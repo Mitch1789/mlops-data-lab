@@ -1,22 +1,23 @@
 import pandas as pd
 
 def load_data(path):
-    return pd.read_csv(path)
+    return pd.read_excel(path)
 
 def clean_data(df):
-    # Example: drop rows with missing values
+    # Drop rows with missing values
     df_clean = df.dropna()
-    # Example: remove outliers or do simple transformations if needed
     return df_clean
 
 def feature_engineering(df):
-    # Example: create a new column
-    # e.g., df['total_amount'] = df['quantity'] * df['price']
+    # Add feature engineering logic here if needed
     return df
 
 if __name__ == "__main__":
-    df = load_data("C:\Users\Miguel\OneDrive\Documents\ALY 4983\mlops-data-lab/IEA-EV-dataEV salesHistoricalCars.xlsx")
+    input_path = (r"C:/Users/Miguel/OneDrive/Documents/ALY 4983/mlops-data-lab/IEA-EV-dataEV salesHistoricalCars.xlsx")
+    output_path = (r"C:/Users/Miguel/OneDrive/Documents/ALY 4983/mlops-data-lab/data/processed/IEA-EV-dataEV salesHistoricalCars_clean.xlsx")
+
+    df = load_data(input_path)
     df = clean_data(df)
     df = feature_engineering(df)
-    df.to_csv("C:\Users\Miguel\OneDrive\Documents\ALY 4983\mlops-data-lab\data\processed/IEA-EV-dataEV salesHistoricalCars_clean.xlsx", index=False)
+    df.to_excel(output_path, index=False)
     print("ETL pipeline completed successfully!")
