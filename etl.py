@@ -9,7 +9,11 @@ def clean_data(df):
     return df_clean
 
 def feature_engineering(df):
-    # Add feature engineering logic here if needed
+    # Calculate 'adjusted_value' for BEV using a multiplier
+    df['adjusted_value'] = df.apply(
+        lambda row: row['value'] * 1.1 if row['powertrain'] == 'BEV' else row['value'],
+        axis=1
+    )
     return df
 
 if __name__ == "__main__":
