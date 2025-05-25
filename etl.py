@@ -9,11 +9,18 @@ def clean_data(df):
     return df_clean
 
 def feature_engineering(df):
-    # Calculate 'adjusted_value' for BEV using a multiplier
+    # Calculate 'adjusted_value' for BEV's using a multiplier
     df['adjusted_value'] = df.apply(
         lambda row: row['value'] * 1.1 if row['powertrain'] == 'BEV' else row['value'],
         axis=1
     )
+
+    # Flag if battery electric
+    df['is_battery_electric'] = df['powertrain'] == 'BEV'
+
+    # Combined region and category
+    df['region_category'] = df['region'] + " - " + df['category']
+
     return df
 
 if __name__ == "__main__":
