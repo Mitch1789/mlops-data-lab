@@ -21,6 +21,10 @@ def feature_engineering(df):
     # Combined region and category
     df['region_category'] = df['region'] + " - " + df['category']
 
+    # Ranking value within each year (highest value = rank 1)
+    df['value_rank_within_year'] = df.groupby('year')['value'].rank(ascending=False)
+
+
     return df
 
 if __name__ == "__main__":
